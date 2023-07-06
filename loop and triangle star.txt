@@ -1,0 +1,27 @@
+.model small
+.stack 100h
+.data
+.code
+main proc
+	mov bx,1
+LOOP1:
+	mov cx,bx
+	LOOP2:
+		mov ah,2
+		mov dl,'*'
+		int 21h
+		loop LOOP2
+
+	mov ah,2
+	mov dl,0ah
+	int 21h
+	mov dl,0dh
+	int 21h
+
+	inc bx
+	cmp bx,10
+	jle LOOP1
+
+exit:
+    main endp
+end main

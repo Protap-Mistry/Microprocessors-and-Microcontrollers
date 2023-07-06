@@ -1,0 +1,39 @@
+.MODEL SMALL
+.STACK 100H
+
+.DATA
+.CODE
+MAIN PROC
+    MOV AX,4
+    MOV BX,8
+  GCD:
+    CMP AX,BX
+    JE ANS_B
+    JNE SWAP
+    
+  SWAP:
+    MOV CX,AX
+    MOV AX,BX
+    MOV BX,CX
+    JMP NXT  
+    
+  NXT:
+    MOV DX,0
+    DIV BX
+    CMP DX,0
+    JE ANS_B
+    MOV AX,DX
+    JMP GCD  
+    
+  ANS_B:
+    MOV DX,BX
+    ADD DX,48
+    MOV AH,2
+    INT 21h
+  
+  
+  EXIT:
+    
+    MAIN ENDP
+
+END MAIN
